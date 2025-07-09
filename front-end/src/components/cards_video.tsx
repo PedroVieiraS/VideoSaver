@@ -10,9 +10,19 @@ import {
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
 
-export function CardVideos({ id, title, url, category }) {
+interface Video {
+    id: number;
+    title: string;
+    url: string;
+    category: {
+      id: number;
+      type: string;
+    };
+  }
 
-    const getYoutubeId = (url) => {
+export function CardVideos({id, title, category, url}:Video) {
+
+    const getYoutubeId = (url:string) => {
         if (!url) return null;
         const regExp = /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w\-]+)/;
         const match = url.match(regExp);
@@ -23,9 +33,9 @@ export function CardVideos({ id, title, url, category }) {
     const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : null
 
     return (
-        <Card className="w-full max-w-3xl mx-auto">
-            <CardHeader>
-                <CardTitle>{title}</CardTitle>
+        <Card className="w-full min-h-[330px] max-h-[330px] max-w-3xl mx-auto">
+            <CardHeader title={title} className="text-center">
+            {title.split(" ").slice(0, 6).join(" ")}{title.split(" ").length > 5}
             </CardHeader>
             <CardContent>
                 <div className="flex justify-center w-full">
@@ -62,7 +72,9 @@ export function CardVideos({ id, title, url, category }) {
             </CardContent>
             <CardFooter className=" flex flex-col gap-5">
                 <Link href={`/videos/${id}`}>
-                    <Button>Assistir</Button>
+                    <Button variant="outline">
+                        Assistir
+                    </Button>
                 </Link>
             </CardFooter>
         </Card>

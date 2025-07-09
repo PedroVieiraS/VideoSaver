@@ -12,7 +12,7 @@ interface Video {
   id: number;
   title: string;
   url: string;
-  categories: {
+  category: {
     id: number;
     type: string;
   };
@@ -42,9 +42,10 @@ export default function Home() {
           <div className=" w-full flex flex-col justify-center items-center">
             <h1 className="text-white text-5xl font-bold m-10">VideoSaver</h1>
           </div>
-          <ul className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 justify-center mb-0 ">
+          {/* "grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 justify-center mb-0 " */}
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 place-items-center">
             {videos.map((video: Video) => (
-              <li className=" m-2" key={video.id}>
+              <li className="w-full max-w-sm p-1" key={video.id}>
                 <CardVideos {...video} />
               </li>
             ))}

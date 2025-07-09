@@ -45,19 +45,27 @@ export default function Search({ children }: { children: React.ReactNode }) {
       <main className="w-full h-min-screen">
 
         <div className="w-full h-full flex flex-col items-center mt-15">
-          <h1 className="font-bold mb-5 text-2xl">Pesquisar Video</h1>
-          <div className="flex justify-center items-center gap-2">
-            <Input 
-            className="w-100"
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            />
-            <Button 
-            disabled={loading} 
-            onClick={handleSearch}
-            >
-              {loading ? "Buscando..." : "Pesquisar"}
-            </Button>
+          
+          {/* <div className="w-full max-w-xl mb-8">
+            <h1 className="font-bold text-2xl text-left">Pesquisar Video</h1>
+          </div> */}
+
+          <div className="w-full max-w-xl mb-8">
+            <div className="flex gap-2">
+              <Input
+                className="flex-1"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && handleSearch()}
+              />
+              <Button
+                disabled={loading}
+                onClick={handleSearch}
+              >
+                {loading ? "Buscando..." : "Pesquisar"}
+              </Button>
+            </div>
+
           </div>
 
           <div className="mt-8 w-full flex flex-col items-center">
@@ -65,11 +73,13 @@ export default function Search({ children }: { children: React.ReactNode }) {
               <span className="text-gray-400">Nenhum resultado encontrado</span>
             )}
             {results.map(video => (
-              <div key={video.id} className="mb-4 p-4 border rounded w-full max-w-xl bg-neutral-900 text-white">
+              <div key={video.id} className=" flex mb-4 p-4 justify-between items-center border rounded-xl w-full max-w-xl bg-neutral-900 text-white">
                 <h2 className="font-bold text-lg">{video.title}</h2>
-                <Link href={`/videos/${video.id}`} rel="noopener noreferrer" className="text-blue-400 underline">
-                  Assistir
-                </Link>
+                <Button>
+                  <Link href={`/videos/${video.id}`} rel="noopener noreferrer">
+                    Assistir
+                  </Link>
+                </Button>
               </div>
             ))}
           </div>

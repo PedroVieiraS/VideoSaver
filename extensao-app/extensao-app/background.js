@@ -1,0 +1,1 @@
+// Arquivo de background vazio para cumprir o manifesto 

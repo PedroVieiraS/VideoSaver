@@ -20,11 +20,6 @@ const items = [
     icon: Home,
   },
   {
-    title: "Assistir",
-    url: "/",
-    icon: Play,
-  },
-  {
     title: "cadastrar",
     url: "/register",
     icon: SquareLibrary,
