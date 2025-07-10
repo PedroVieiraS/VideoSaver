@@ -28,9 +28,8 @@ export function CardVideos({id, title, category, url}:Video) {
         const match = url.match(regExp);
         return match ? match[1] : null;
     }
-
-    const videoId = getYoutubeId(url)
-    const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : null
+    const videoId = getYoutubeId(url);
+    const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : undefined;
 
     return (
         <Card className="w-full min-h-[330px] max-h-[330px] max-w-3xl mx-auto">
